@@ -55,7 +55,7 @@ public String leerString(String Texto)
             return numero;
         else{
             Mensaje("Ingrese un numero dentro del rango dado: " + minimo + " - " + maximo);
-            return leerEnEnteroEnRango( maximo, minimo, texto);
+            return leerEnEnteroEnRango( minimo, maximo, texto);
 
         }
 
@@ -66,7 +66,7 @@ public String leerString(String Texto)
             return numero;
         else{
             Mensaje("Ingrese un numero dentro del rango dado: " + minimo + " - " + maximo);
-            return leerEnFloatEnRango(maximo, minimo, texto);
+            return leerEnFloatEnRango(minimo, maximo, texto);
 
         }
 
