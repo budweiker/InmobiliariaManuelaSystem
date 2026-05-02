@@ -1,5 +1,5 @@
 package realEstate.view;
 
-public class PropertiesView {
+public class PropertyView {
     
 }

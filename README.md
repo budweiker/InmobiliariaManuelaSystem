@@ -1,6 +1,6 @@
   =>  Backend   : Andrés Felipe Orozco
 
-  =>  Full stack  : Santiago Rodriguez
+  =>  Full stack  : Santiago Rodríguez Fernández 😎
 
   =>  FrontEnd   : Sergio Perez
 
