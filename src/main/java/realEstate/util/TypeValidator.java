@@ -1,5 +1,4 @@
 package realEstate.util;
+public class TypeValidator{
 
-public class TypeValidator {
-    
 }
