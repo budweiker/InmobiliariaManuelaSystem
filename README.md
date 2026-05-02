@@ -1,6 +1,4 @@
-  =>  ***Product Owner***    : Andrés Felipe Orozco
-
-  =>  ***Scrum Master***    : Sergio Saldarriaga
+  =>  Backend   : Andrés Felipe Orozco
 
   =>  Full stack  : Santiago Rodriguez
 
