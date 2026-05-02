@@ -49,24 +49,24 @@ public String leerString(String Texto)
 }
     //endregion
     //region metodos para leer en rango para int y float
-    public int LeerEnEnteroEnRango(int numero, int maximo, int minimo,String texto){
-        numero = leerInt(texto);
-        if(numero > minimo  && numero < maximo)
+    public int leerEnEnteroEnRango(int maximo, int minimo,String texto){
+        int numero = leerInt(texto);
+        if(numero >= minimo  && numero <= maximo)
             return numero;
         else{
             Mensaje("Ingrese un numero dentro del rango dado: " + minimo + " - " + maximo);
-            return LeerEnEnteroEnRango(numero, maximo, minimo, texto);
+            return leerEnEnteroEnRango( maximo, minimo, texto);
 
         }
 
     }
-    public int LeerEnFloatEnRango(int numero, int maximo, int minimo,String texto){
-        numero = leerInt(texto);
-        if(numero > minimo  && numero < maximo)
+    public float leerEnFloatEnRango(float maximo, float minimo,String texto){
+        float numero = leerFloat(texto);
+        if(numero >= minimo  && numero <= maximo)
             return numero;
         else{
             Mensaje("Ingrese un numero dentro del rango dado: " + minimo + " - " + maximo);
-            return LeerEnEnteroEnRango(numero, maximo, minimo, texto);
+            return leerEnFloatEnRango(maximo, minimo, texto);
 
         }
 
