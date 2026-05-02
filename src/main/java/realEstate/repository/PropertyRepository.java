@@ -1,5 +1,5 @@
 package realEstate.repository;
 
-public class PropertiesRepository {
+public class PropertyRepository {
     
 }
