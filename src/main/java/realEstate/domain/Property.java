@@ -1,6 +1,7 @@
 package realEstate.domain;
 
 public class Property {
+    private int id;
     private float valorPropiedad;
     private String ubicacionPropiedad;
     private int habitaciones;
@@ -39,6 +40,12 @@ public class Property {
     }
     public String getnombrePropiedad(){
         return nombrePropiedad;
+    }
+    public float getIdPropiedad() {
+        return id;
+    }
+    public void setIdPropiedad(int nuevaId) {
+        this.id = nuevaId;
     }
 }
 
