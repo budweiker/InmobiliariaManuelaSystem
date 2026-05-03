@@ -3,15 +3,15 @@ import java.util.Collection;
 import java.util.HashMap;
 import realEstate.domain.Seller;
 public class SellerRepository {
-    HashMap<String, Seller> vendedores = new HashMap<>();
+    HashMap<Integer, Seller> vendedores = new HashMap<>();
     public void agregar(Seller s){
-        vendedores.put(s.getNombre(), s);
+        vendedores.put(s.getId(), s);
     }
-    public void eliminar(String nombre){
-        vendedores.remove(nombre);
+    public void eliminar(int id){
+        vendedores.remove(id);
     }
-    public Seller buscar(String nombre){
-        return vendedores.get(nombre);
+    public Seller buscar(int id){
+        return vendedores.get(id);
     }
     public Collection<Seller> listarTodos(){
         return vendedores.values();
