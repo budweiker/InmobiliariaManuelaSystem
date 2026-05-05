@@ -1,11 +1,9 @@
 package realEstate.config;
 
-import realEstate.repository.BuyerRepository;
-import realEstate.repository.PropertyRepository;
-import realEstate.repository.SellerRepository;
-import realEstate.service.BuyerService;
+import realEstate.persistence.repository.BuyerRepository;
+import realEstate.persistence.repository.PropertyRepository;
+import realEstate.persistence.repository.SellerRepository;
 import realEstate.service.PropertyService;
-import realEstate.service.SellerService;
 
 public class Config {
     
@@ -16,7 +14,7 @@ public class Config {
 
     // Services 
     private PropertyService propertyService = new PropertyService(propertyRepo);
-    private SellerService sellerService = new SellerService(sellerRepo, propertyService);
-    private BuyerService buyerService = new BuyerService(buyerRepo, propertyService);
+    //private SellerService sellerService = new SellerService(sellerRepo, propertyService);
+    //private BuyerService buyerService = new BuyerService(buyerRepo, propertyService);
 
 }
