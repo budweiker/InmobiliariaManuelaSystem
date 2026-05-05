@@ -1,4 +1,4 @@
-package realEstate.repository;
+package realEstate.persistence.repository;
 import java.util.Collection;
 import java.util.HashMap;
 import realEstate.domain.Property;
