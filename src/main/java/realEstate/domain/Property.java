@@ -12,7 +12,7 @@ public class Property {
     }
     public float getValorPropiedad() {
         return valorPropiedad;
-    }
+    }   
     public void setValorPropiedad(float valorPropiedad) {
         this.valorPropiedad = valorPropiedad;
     }
@@ -35,10 +35,10 @@ public class Property {
     public void setEstrato(int estrato) {
         this.estrato = estrato;
     }
-    public void setnombrePropiedad(String a){
+    public void setNombrePropiedad(String a){
         this.nombrePropiedad = a;
     }
-    public String getnombrePropiedad(){
+    public String getNombrePropiedad(){
         return nombrePropiedad;
     }
     public float getIdPropiedad() {
