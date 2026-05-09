@@ -1,7 +1,6 @@
 package realEstate.service;
 import realEstate.domain.Seller;
 import realEstate.persistence.repository.SellerRepository;
-import realEstate.domain.Property;
 import realEstate.util.TypeValidator;
 import java.util.Collection;
 
