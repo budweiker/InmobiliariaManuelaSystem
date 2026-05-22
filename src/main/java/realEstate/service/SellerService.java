@@ -1,32 +1,42 @@
 package realEstate.service;
+
 import realEstate.domain.Seller;
 import realEstate.persistence.repository.SellerRepository;
 import realEstate.util.TypeValidator;
+
 import java.util.Collection;
+import java.util.Collections;
 
 public class SellerService {
-    static TypeValidator tv = new TypeValidator();
-    private SellerRepository repository;
-    public SellerService(){
-        this.repository = new SellerRepository();
+    private final TypeValidator tv = new TypeValidator();
+    private final SellerRepository repository;
+
+    public SellerService() {
+        this(new SellerRepository());
     }
-    public Collection<Seller> SelectAllSellers(){
-        if(repository == null){
+
+    public SellerService(SellerRepository repository) {
+        this.repository = repository;
+    }
+
+    public Collection<Seller> selectAllSellers() {
+        if (repository == null) {
             tv.Mensaje("No hay ningun vendedor por el momento");
-            return null;
-        }else
-            return repository.listarTodos();
+            return Collections.emptyList();
+        }
+        return repository.listarTodos();
     }
-    public void borrarSeller(Seller s){
+
+    public void deleteSeller(Seller s) {
         repository.eliminar(s.getId());
     }
-    public void agregarSeller(Seller s){
-        repository.agregar(s);
 
+    public void addSeller(Seller s) {
+        repository.agregar(s);
     }
-    public Seller buscarSeller(int id){
+
+    public Seller findSeller(int id) {
         return repository.buscar(id);
     }
-
-    
 }
+

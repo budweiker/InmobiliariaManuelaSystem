@@ -1,33 +1,42 @@
 package realEstate.service;
+
 import realEstate.domain.Admin;
 import realEstate.persistence.repository.AdminRepository;
 import realEstate.util.TypeValidator;
-import java.util.Collection;
 
+import java.util.Collection;
+import java.util.Collections;
 
 public class AdminService {
-    static TypeValidator tv = new TypeValidator();
-    private AdminRepository repository;
-    public AdminService(){
-        this.repository = new AdminRepository();
+    private final TypeValidator tv = new TypeValidator();
+    private final AdminRepository repository;
+
+    public AdminService() {
+        this(new AdminRepository());
     }
-    public Collection<Admin> SelectAllSellers(){
-        if(repository == null){
-            tv.Mensaje("No hay ningun comprador por el momento");
-            return null;
-        }else
-            return repository.listarTodos();
+
+    public AdminService(AdminRepository repository) {
+        this.repository = repository;
     }
-    public void borrarSeller(Admin a){
+
+    public Collection<Admin> selectAllAdmins() {
+        if (repository == null) {
+            tv.Mensaje("No hay ningun administrador por el momento");
+            return Collections.emptyList();
+        }
+        return repository.listarTodos();
+    }
+
+    public void deleteAdmin(Admin a) {
         repository.eliminar(a.getId());
     }
-    public void agregarSeller(Admin a){
-        repository.agregar(a);
 
+    public void addAdmin(Admin a) {
+        repository.agregar(a);
     }
-    public Admin buscarSeller(int id){
+
+    public Admin findAdmin(int id) {
         return repository.buscar(id);
     }
-
-    
 }
+

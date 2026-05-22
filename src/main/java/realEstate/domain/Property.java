@@ -7,27 +7,34 @@ public class Property {
     private int habitaciones;
     private int estrato;
     private String nombrePropiedad;
-    public Property(){
-        
+
+    public Property() {
     }
+
     public float getValorPropiedad() {
         return valorPropiedad;
-    }   
+    }
+
     public void setValorPropiedad(float valorPropiedad) {
         this.valorPropiedad = valorPropiedad;
     }
+
     public String getUbicacionPropiedad() {
         return ubicacionPropiedad;
     }
+
     public void setUbicacionPropiedad(String ubicacionPropiedad) {
         this.ubicacionPropiedad = ubicacionPropiedad;
     }
+
     public int getHabitaciones() {
         return habitaciones;
     }
+
     public void setHabitaciones(int habitaciones) {
         this.habitaciones = habitaciones;
     }
+
     public int getEstrato() {
         return estrato;
     }
@@ -35,15 +42,19 @@ public class Property {
     public void setEstrato(int estrato) {
         this.estrato = estrato;
     }
-    public void setNombrePropiedad(String a){
-        this.nombrePropiedad = a;
+
+    public void setNombrePropiedad(String nombrePropiedad) {
+        this.nombrePropiedad = nombrePropiedad;
     }
-    public String getNombrePropiedad(){
+
+    public String getNombrePropiedad() {
         return nombrePropiedad;
     }
-    public float getIdPropiedad() {
+
+    public int getIdPropiedad() {
         return id;
     }
+
     public void setIdPropiedad(int nuevaId) {
         this.id = nuevaId;
     }
