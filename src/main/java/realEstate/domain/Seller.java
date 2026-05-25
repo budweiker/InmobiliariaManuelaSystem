@@ -6,7 +6,6 @@ public class Seller extends User {
         
     }
 
-
     public int getPropiedadesVendidas() {
         return propiedadesVendidas;
     }

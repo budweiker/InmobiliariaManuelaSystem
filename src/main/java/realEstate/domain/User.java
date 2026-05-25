@@ -1,16 +1,24 @@
 package realEstate.domain;
 
 public class User {
-    protected int id;  //Como es una clase padre, ps si ponemos private las otras clases no lo van a poder ver y si es public no estamos usando encapsulacion, entonces la mejor opcion es protected
-    protected String nombre;
-    protected float balance;
-    protected String telefono;
-    protected String correo;
+    private int id;
+    private String nombre;
+//    private float balance;
+    private String telefono;
+    private String correo;
     
     public User(){
-
     }
- public int getId() {
+
+    public User(int id, String nombre, String telefono, String correo) {
+        this.id = id;
+        this.nombre = nombre;
+        //this.balance = balance;
+        this.telefono = telefono;
+        this.correo = correo;
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -26,13 +34,13 @@ public class User {
         this.nombre = nombre;
     }
 
-    public float getBalance() {
+/*    public float getBalance() {
         return balance;
     }
 
     public void setBalance(float balance) {
         this.balance = balance;
-    }
+    }*/
 
     public String getTelefono() {
         return telefono;
