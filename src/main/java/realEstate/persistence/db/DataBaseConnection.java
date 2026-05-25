@@ -1,10 +1,11 @@
 package realEstate.persistence.db;
-
+import realEstate.util.TypeValidator;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DataBaseConnection {
+        private final TypeValidator data = new TypeValidator();
         private static DataBaseConnection instance;
         private final Connection connection;
 
@@ -15,7 +16,7 @@ public class DataBaseConnection {
         private DataBaseConnection() {
             try{
                 connection = DriverManager.getConnection(URL, USER, PASSWORD);
-                System.out.println("Conexión a la base de datos establecida");
+                data.Mensaje("Conexión a la base de datos establecida");
             } catch (SQLException e) {
                 throw new RuntimeException("Error al conectar a la base de datos",e);
             }
