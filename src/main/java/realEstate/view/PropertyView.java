@@ -1,17 +1,17 @@
 package realEstate.view;
 
 import realEstate.domain.Property;
-import realEstate.service.PropertyService;
+import realEstate.service.PropertyServiceImpl;
 import realEstate.util.TypeValidator;
 
 import java.util.Collection;
 
 public class PropertyView {
-    private final PropertyService propertyService;
+    private final PropertyServiceImpl propertyServiceImpl;
     private final TypeValidator tv = new TypeValidator();
 
-    public PropertyView(PropertyService propertyService) {
-        this.propertyService = propertyService;
+    public PropertyView(PropertyServiceImpl propertyServiceImpl) {
+        this.propertyServiceImpl = propertyServiceImpl;
     }
 
     public void menu() {
@@ -35,7 +35,7 @@ public class PropertyView {
     }
 
     private void listProperties() {
-        Collection<Property> properties = propertyService.selectAllProperties();
+        Collection<Property> properties = propertyServiceImpl.selectAllProperties();
         if (properties == null || properties.isEmpty()) {
             tv.Mensaje("No hay propiedades registradas.");
             return;
@@ -55,7 +55,7 @@ public class PropertyView {
 
     private void searchProperty() {
         String name = tv.leerString("Ingrese el nombre de la propiedad a buscar:");
-        Property property = propertyService.buscarPropiedad(name);
+        Property property = propertyServiceImpl.buscarPropiedad(name);
         if (property == null) {
             tv.Mensaje("Propiedad no encontrada.");
             return;
@@ -77,18 +77,18 @@ public class PropertyView {
         property.setUbicacionPropiedad(tv.leerString("Ingrese la ubicación de la propiedad:"));
         property.setHabitaciones(tv.leerInt("Ingrese el número de habitaciones:"));
         property.setEstrato(tv.leerInt("Ingrese el estrato de la propiedad:"));
-        propertyService.agregarPropiedad(property);
+        propertyServiceImpl.agregarPropiedad(property);
         tv.Mensaje("Propiedad agregada correctamente.");
     }
 
     private void deleteProperty() {
         String name = tv.leerString("Ingrese el nombre de la propiedad a eliminar:");
-        Property property = propertyService.buscarPropiedad(name);
+        Property property = propertyServiceImpl.buscarPropiedad(name);
         if (property == null) {
             tv.Mensaje("Propiedad no encontrada.");
             return;
         }
-        propertyService.eliminarPropiedad(property);
+        propertyServiceImpl.eliminarPropiedad(property);
         tv.Mensaje("Propiedad eliminada correctamente.");
     }
 }

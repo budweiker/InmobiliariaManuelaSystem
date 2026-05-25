@@ -7,15 +7,15 @@ import realEstate.util.TypeValidator;
 import java.util.Collection;
 import java.util.Collections;
 
-public class PropertyService {
+public class PropertyServiceImpl {
     private final TypeValidator tv = new TypeValidator();
     private final PropertyRepository repository;
 
-    public PropertyService() {
+    public PropertyServiceImpl() {
         this(new PropertyRepository());
     }
 
-    public PropertyService(PropertyRepository repository) {
+    public PropertyServiceImpl(PropertyRepository repository) {
         this.repository = repository;
     }
 

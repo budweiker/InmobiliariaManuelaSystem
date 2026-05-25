@@ -4,6 +4,7 @@ public class Property {
     private int id;
     private float valorPropiedad;
     private String ubicacionPropiedad;
+    private String propertyAddress;
     private int habitaciones;
     private int estrato;
     private String nombrePropiedad;
@@ -25,6 +26,14 @@ public class Property {
 
     public void setUbicacionPropiedad(String ubicacionPropiedad) {
         this.ubicacionPropiedad = ubicacionPropiedad;
+    }
+
+    public String getPropertyAddress() {
+        return propertyAddress;
+    }
+
+    public void setPropertyAddress(String propertyAddress) {
+        this.propertyAddress = propertyAddress;
     }
 
     public int getHabitaciones() {

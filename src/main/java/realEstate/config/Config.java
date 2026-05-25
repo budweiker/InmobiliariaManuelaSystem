@@ -1,18 +1,21 @@
 package realEstate.config;
 
-import realEstate.persistence.repository.AdminRepository;
-import realEstate.persistence.repository.BuyerRepository;
-import realEstate.persistence.repository.PropertyRepository;
-import realEstate.persistence.repository.SellerRepository;
+import realEstate.persistence.db.DataBaseConnection;
+import realEstate.persistence.mapper.PropertyRowMapper;
+import realEstate.persistence.repository.*;
 import realEstate.service.AdminService;
 import realEstate.service.BuyerService;
-import realEstate.service.PropertyService;
+import realEstate.service.PropertyServiceImpl;
 import realEstate.service.SellerService;
+import realEstate.service.portOutput.PropertyPersistencePort;
 import realEstate.userInterface.MenuApp;
 import realEstate.view.AdminView;
 import realEstate.view.BuyerView;
 import realEstate.view.PropertyView;
 import realEstate.view.SellerView;
+import realEstate.persistence.repository.PropertyRepositoryDB;
+
+import java.sql.Connection;
 
 public class Config {
     private final PropertyRepository propertyRepo;
@@ -20,7 +23,7 @@ public class Config {
     private final BuyerRepository buyerRepo;
     private final AdminRepository adminRepo;
 
-    private final PropertyService propertyService;
+    private final PropertyServiceImpl propertyServiceImpl;
     private final SellerService sellerService;
     private final BuyerService buyerService;
     private final AdminService adminService;
@@ -37,17 +40,21 @@ public class Config {
         buyerRepo = new BuyerRepository();
         adminRepo = new AdminRepository();
 
-        propertyService = new PropertyService(propertyRepo);
+        propertyServiceImpl = new PropertyServiceImpl(propertyRepo);
         sellerService = new SellerService(sellerRepo);
         buyerService = new BuyerService(buyerRepo);
         adminService = new AdminService(adminRepo);
 
-        propertyView = new PropertyView(propertyService);
+        propertyView = new PropertyView(propertyServiceImpl);
         sellerView = new SellerView(sellerService);
         buyerView = new BuyerView(buyerService);
         adminView = new AdminView(adminService);
 
         menuApp = new MenuApp(propertyView, sellerView, buyerView, adminView);
+
+        Connection connection = DataBaseConnection.getInstance().getConnection();
+        PropertyPersistencePort propertyRepositoryDB = new PropertyRepositoryDB(connection);
+        PropertyRowMapper propertyRowMapper = new PropertyRowMapper();
     }
 
     public MenuApp getMenuApp() {
