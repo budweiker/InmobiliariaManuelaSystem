@@ -17,7 +17,7 @@ public class Admin {
         this.telefono = telefono;
         this.correo = correo;
         this.adminType = adminType;
-        this.adminType = adminType;
+
     }
 
     public String getAdminType() {
