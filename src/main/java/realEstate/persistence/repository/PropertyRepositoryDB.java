@@ -20,7 +20,11 @@ public class PropertyRepositoryDB implements PropertyPersistencePort {
 
     @Override
     public Property agregar(Property p) {
+<<<<<<< Updated upstream
         String sql = "INSERT INTO property (propertyName, location, price, rooms, estrato) VALUES (?, ?, ?, ?, ?)";
+=======
+        String sql = "INSERT INTO property (nombre_propiedad, direccion, valor, habitaciones, estrato, barrio) VALUES (?, ?, ?, ?, ?, ?)";
+>>>>>>> Stashed changes
         try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
             setCustomParams(ps, p);
@@ -79,12 +83,21 @@ public class PropertyRepositoryDB implements PropertyPersistencePort {
 
     //helper
     private void setCustomParams(PreparedStatement ps, Property p) throws SQLException {
+<<<<<<< Updated upstream
         ps.setInt(1, p.getIdPropiedad());
         ps.setString(2, p.getNombrePropiedad());
         ps.setString(3, p.getUbicacionPropiedad());
         ps.setDouble(4, p.getValorPropiedad());
         ps.setInt(5, p.getHabitaciones());
         ps.setInt(6, p.getEstrato());
+=======
+        ps.setString(1, p.getNombrePropiedad());
+        ps.setString(2, p.getPropertyAddress());
+        ps.setFloat(3, p.getValorPropiedad());
+        ps.setInt(4, p.getHabitaciones());
+        ps.setInt(5, p.getEstrato());
+        ps.setString(6, p.getUbicacionPropiedad());
+>>>>>>> Stashed changes
     }
 
 }

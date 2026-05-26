@@ -7,8 +7,16 @@ public class Admin extends User {
         super();
     }
 
+<<<<<<< Updated upstream
     public Admin(int id, String nombre, float balance, String telefono, String correo, String adminType) {
         super(id, nombre, balance, telefono, correo);
+=======
+    public Admin(int id, String nombre, String telefono, String correo, String adminType) {
+        this.id = id;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.correo = correo;
+>>>>>>> Stashed changes
         this.adminType = adminType;
     }
 
