@@ -1,11 +1,11 @@
 package realEstate.domain;
 
-public class User {
+public abstract class User {
     private int id;
     private String nombre;
-//    private float balance;
     private String telefono;
     private String correo;
+    private float balance;
     
     public User(){
     }
@@ -34,13 +34,13 @@ public class User {
         this.nombre = nombre;
     }
 
-/*    public float getBalance() {
+    public float getBalance() {
         return balance;
     }
 
     public void setBalance(float balance) {
         this.balance = balance;
-    }*/
+    }
 
     public String getTelefono() {
         return telefono;

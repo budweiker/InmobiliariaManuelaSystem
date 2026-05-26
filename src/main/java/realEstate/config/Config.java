@@ -1,7 +1,6 @@
 package realEstate.config;
 
 import realEstate.persistence.db.DataBaseConnection;
-import realEstate.persistence.mapper.PropertyRowMapper;
 import realEstate.persistence.repository.*;
 import realEstate.service.AdminService;
 import realEstate.service.BuyerService;
@@ -18,7 +17,6 @@ import realEstate.persistence.repository.PropertyRepositoryDB;
 import java.sql.Connection;
 
 public class Config {
-    private final PropertyRepository propertyRepo;
     private final SellerRepository sellerRepo;
     private final BuyerRepository buyerRepo;
     private final AdminRepository adminRepo;
@@ -35,12 +33,14 @@ public class Config {
     private final MenuApp menuApp;
 
     public Config() {
-        propertyRepo = new PropertyRepository();
         sellerRepo = new SellerRepository();
         buyerRepo = new BuyerRepository();
         adminRepo = new AdminRepository();
 
-        propertyServiceImpl = new PropertyServiceImpl(propertyRepo);
+        Connection connection = DataBaseConnection.getInstance().getConnection();
+        PropertyPersistencePort propertyRepositoryDB = new PropertyRepositoryDB(connection);
+
+        propertyServiceImpl = new PropertyServiceImpl(propertyRepositoryDB);
         sellerService = new SellerService(sellerRepo);
         buyerService = new BuyerService(buyerRepo);
         adminService = new AdminService(adminRepo);
@@ -51,10 +51,6 @@ public class Config {
         adminView = new AdminView(adminService);
 
         menuApp = new MenuApp(propertyView, sellerView, buyerView, adminView);
-
-        Connection connection = DataBaseConnection.getInstance().getConnection();
-        PropertyPersistencePort propertyRepositoryDB = new PropertyRepositoryDB(connection);
-        PropertyRowMapper propertyRowMapper = new PropertyRowMapper();
     }
 
     public MenuApp getMenuApp() {

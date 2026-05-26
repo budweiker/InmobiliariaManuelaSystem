@@ -46,7 +46,6 @@ public class AdminView {
                     .append(" | Nombre: ").append(admin.getNombre())
                     .append(" | Correo: ").append(admin.getCorreo())
                     .append(" | Teléfono: ").append(admin.getTelefono())
-                    .append(" | Balance: ").append(admin.getBalance())
                     .append("\n");
         }
         tv.Mensaje(sb.toString());
@@ -63,8 +62,8 @@ public class AdminView {
                 "ID: " + admin.getId() + "\n" +
                 "Nombre: " + admin.getNombre() + "\n" +
                 "Correo: " + admin.getCorreo() + "\n" +
-                "Teléfono: " + admin.getTelefono() + "\n" +
-                "Balance: " + admin.getBalance());
+                "Teléfono: " + admin.getTelefono() + "\n" 
+               );
     }
 
     private void addAdmin() {
@@ -73,7 +72,6 @@ public class AdminView {
         admin.setNombre(tv.leerString("Ingrese nombre del administrador:"));
         admin.setCorreo(tv.leerString("Ingrese correo del administrador:"));
         admin.setTelefono(tv.leerString("Ingrese teléfono del administrador:"));
-        admin.setBalance(tv.leerFloat("Ingrese balance del administrador:"));
         adminService.addAdmin(admin);
         tv.Mensaje("Administrador agregado correctamente.");
     }
