@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class PropertyRepositoryDB implements PropertyPersistencePort {
-    private final TypeValidator data = new TypeValidator();
+    private final TypeValidator tv = new TypeValidator();
     private final Connection connection;
     private final PropertyRowMapper rowMapper = new PropertyRowMapper();
 
@@ -24,41 +24,43 @@ public class PropertyRepositoryDB implements PropertyPersistencePort {
         String sql = "INSERT INTO property (nombre_propiedad, direccion, valor, habitaciones, estrato, barrio) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
-
             setCustomParams(ps, p);
             ps.executeUpdate();
 
-            ResultSet keys = ps.getGeneratedKeys();
-            if (keys.next()) {
-                p.setIdPropiedad(keys.getInt(1));
-        }
-    }catch (Exception e) {
+            try (ResultSet keys = ps.getGeneratedKeys()) {
+                if (keys.next()) {
+                    p.setIdPropiedad(keys.getInt(1));
+                }
+            }
+        } catch (Exception e) {
             throw new RuntimeException("Error al insertar datos de la propiedad", e);
         }
         return p;
     }
 
-    public void eliminar (String nombre){
-        String sql = "DELETE FROM property WHERE propertyName = ?";
+    @Override
+    public void eliminar(String nombre) {
+        String sql = "DELETE FROM property WHERE nombre_propiedad = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, nombre);
             ps.executeUpdate();
-            data.Mensaje("✓ Propiedad eliminada: " + nombre);
-        }catch (Exception e) {
+            tv.Mensaje("✓ Propiedad eliminada: " + nombre);
+        } catch (Exception e) {
             throw new RuntimeException("Error al eliminar la propiedad" + e.getMessage());
         }
     }
 
     @Override
-    public Property buscar (String nombre){
-        String sql = "SELECT * FROM property WHERE propertyName = ?";
+    public Property buscar(String nombre) {
+        String sql = "SELECT * FROM property WHERE nombre_propiedad = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, nombre);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return rowMapper.mapRow(rs);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rowMapper.mapRow(rs);
+                }
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException("Error al buscar la propiedad" + e.getMessage());
         }
         return null;

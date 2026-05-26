@@ -1,23 +1,23 @@
 package realEstate.domain;
 
-public class Admin extends User {
+public class Admin {
+    private int id;
+    private String nombre;
+    private String telefono;
+    private String correo;
     private String adminType;
 
     public Admin(){
         super();
     }
 
-<<<<<<< Updated upstream
-    public Admin(int id, String nombre, float balance, String telefono, String correo, String adminType) {
-        super(id, nombre, balance, telefono, correo);
-=======
     public Admin(int id, String nombre, String telefono, String correo, String adminType) {
         this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
         this.correo = correo;
->>>>>>> Stashed changes
         this.adminType = adminType;
+
     }
 
     public String getAdminType() {
@@ -27,4 +27,36 @@ public class Admin extends User {
     public void setAdminType(String adminType) {
         this.adminType = adminType;
     }
+     public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
 }
+
