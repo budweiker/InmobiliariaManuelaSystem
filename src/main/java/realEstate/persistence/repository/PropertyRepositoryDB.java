@@ -19,7 +19,7 @@ public class PropertyRepositoryDB implements PropertyPersistencePort {
     }
 
     @Override
-    public void agregar(Property p) {
+    public Property agregar(Property p) {
         String sql = "INSERT INTO property (propertyName, location, price, rooms, estrato) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
@@ -33,6 +33,7 @@ public class PropertyRepositoryDB implements PropertyPersistencePort {
     }catch (Exception e) {
             throw new RuntimeException("Error al insertar datos de la propiedad", e);
         }
+        return p;
     }
 
     public void eliminar (String nombre){

@@ -5,9 +5,9 @@ import realEstate.domain.Property;
 import java.util.Collection;
 
 public interface PropertyPersistencePort {
-    public void agregar(Property p);
-    public void eliminar(String nombre);
-    public Property buscar(String nombre);
-    public Collection<Property> listarTodos();
+    Property agregar(Property p);
+    void eliminar(String nombre);
+    Property buscar(String nombre);
+    Collection<Property> listarTodos();
 
 }
