@@ -1,7 +1,7 @@
 package realEstate.service;
 
 import realEstate.domain.Property;
-import realEstate.persistence.repository.PropertyRepository;
+import realEstate.service.portOutput.PropertyPersistencePort;
 import realEstate.util.TypeValidator;
 
 import java.util.Collection;
@@ -9,13 +9,13 @@ import java.util.Collections;
 
 public class PropertyServiceImpl {
     private final TypeValidator tv = new TypeValidator();
-    private final PropertyRepository repository;
+    private final PropertyPersistencePort repository;
 
     public PropertyServiceImpl() {
-        this(new PropertyRepository());
+        this(new realEstate.persistence.repository.PropertyRepository());
     }
 
-    public PropertyServiceImpl(PropertyRepository repository) {
+    public PropertyServiceImpl(PropertyPersistencePort repository) {
         this.repository = repository;
     }
 
