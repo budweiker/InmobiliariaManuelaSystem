@@ -3,8 +3,15 @@ package realEstate.domain;
 public class Buyer extends User {
 
     private String propiedadDeInteresActual;
+    private float balance;
     public Buyer(){
-        
+        super();
+    }
+
+    public Buyer(int id, String nombre, float balance, String telefono, String correo, String propiedadDeInteresActual) {
+        super(id, nombre, telefono, correo);
+        this.propiedadDeInteresActual = propiedadDeInteresActual;
+        this.balance = balance;
     }
 
     public String getPropiedadDeInteresActual() {
@@ -14,5 +21,12 @@ public class Buyer extends User {
     public void setPropiedadDeInteresActual(String propiedadDeInteresActual) {
         this.propiedadDeInteresActual = propiedadDeInteresActual;
     }
-    
+
+    public float getBalance() {
+        return balance;
+    }
+
+    public void setBalance(float balance) {
+        this.balance = balance;
+    }
 }
