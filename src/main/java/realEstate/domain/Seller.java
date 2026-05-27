@@ -9,6 +9,9 @@ public class Seller extends User {
         this.balance = balance;
 
     }
+    public Seller(){
+        super();
+    }
 
     public int getPropiedadesVendidas() {
         return propiedadesVendidas;
