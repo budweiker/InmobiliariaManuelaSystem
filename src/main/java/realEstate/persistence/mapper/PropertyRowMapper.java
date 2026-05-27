@@ -16,6 +16,7 @@ public class PropertyRowMapper implements RowMapper<Property> {
         p.setValorPropiedad(rs.getFloat("valor"));
         p.setHabitaciones(rs.getInt("habitaciones"));
         p.setEstrato(rs.getInt("estrato"));
+        p.setUbicacionPropiedad(rs.getString("barrio"));
         return p;
     }
 }
