@@ -10,10 +10,7 @@ public class Admin extends User {
         super(id,nombre,telefono,correo,contraseña);
         this.adminType = adminType;
     }
-    
-
-    
-
+   
     public String getAdminType() {
         return adminType;
     }
