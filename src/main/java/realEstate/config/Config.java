@@ -38,9 +38,17 @@ public class Config {
         adminRepo = new AdminRepository();
 
         Connection connection = DataBaseConnection.getInstance().getConnection();
+        //repositories DB
         PropertyPersistencePort propertyRepositoryDB = new PropertyRepositoryDB(connection);
+        AdminRepositoryDB  adminRepositoryDB  = new AdminRepositoryDB(connection);
+        SellerRepositoryDB sellerRepositoryDB = new SellerRepositoryDB(connection);
+        BuyerRepositoryDB  buyerRepositoryDB  = new BuyerRepositoryDB(connection);
 
+        //Services
         propertyServiceImpl = new PropertyServiceImpl(propertyRepositoryDB);
+        //adminService  = new AdminService(adminRepositoryDB);
+        //sellerService = new SellerService(sellerRepositoryDB);
+        //buyerService  = new BuyerService(buyerRepositoryDB);
         sellerService = new SellerService(sellerRepo);
         buyerService = new BuyerService(buyerRepo);
         adminService = new AdminService(adminRepo);

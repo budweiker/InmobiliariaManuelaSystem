@@ -8,8 +8,8 @@ public class Buyer extends User {
         super();
     }
 
-    public Buyer(int id, String nombre, float balance, String telefono, String correo, String propiedadDeInteresActual,String contraseña) {
-        super(id, nombre, telefono, correo,contraseña);
+    public Buyer(int id, String password, String nombre, String apellido, String telefono, String correo, boolean status, String propiedadDeInteresActual, float balance) {
+        super(id, password, nombre, apellido, telefono, correo, status);
         this.propiedadDeInteresActual = propiedadDeInteresActual;
         this.balance = balance;
     }
