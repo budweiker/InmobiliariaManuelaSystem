@@ -21,7 +21,7 @@ public class PropertyRepositoryDB implements PropertyPersistencePort {
     @Override
     public Property agregar(Property p) {
 
-        String sql = "INSERT INTO property (nombre_propiedad, direccion, valor, habitaciones, estrato, barrio) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO property (barrio, direccion, valor, habitaciones, estrato) VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             setCustomParams(ps, p);
@@ -40,7 +40,7 @@ public class PropertyRepositoryDB implements PropertyPersistencePort {
 
     @Override
     public void eliminar(String nombre) {
-        String sql = "DELETE FROM property WHERE nombre_propiedad = ?";
+        String sql = "DELETE FROM property WHERE barrio = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, nombre);
             ps.executeUpdate();
@@ -52,7 +52,7 @@ public class PropertyRepositoryDB implements PropertyPersistencePort {
 
     @Override
     public Property buscar(String nombre) {
-        String sql = "SELECT * FROM property WHERE nombre_propiedad = ?";
+        String sql = "SELECT * FROM property WHERE barrio = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, nombre);
             try (ResultSet rs = ps.executeQuery()) {
@@ -84,12 +84,11 @@ public class PropertyRepositoryDB implements PropertyPersistencePort {
     //helper
     private void setCustomParams(PreparedStatement ps, Property p) throws SQLException {
 
-        ps.setString(1, p.getNombrePropiedad());
-        ps.setString(2, p.getPropertyAddress());
+        ps.setString(1, p.getBarrio());
+        ps.setString(2, p.getDireccion());
         ps.setFloat(3, p.getValorPropiedad());
         ps.setInt(4, p.getHabitaciones());
         ps.setInt(5, p.getEstrato());
-        ps.setString(6, p.getUbicacionPropiedad());
 
     }
 

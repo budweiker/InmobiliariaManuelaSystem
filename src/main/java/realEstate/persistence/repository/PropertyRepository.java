@@ -15,20 +15,20 @@ public class PropertyRepository implements PropertyPersistencePort {
     public Property agregar(Property p) {
         propiedades.add(p);
         for (Property p1 : propiedades) {
-            System.out.println(p1.getIdPropiedad() + " " + p1.getNombrePropiedad() + " " + p1.getPropertyAddress() + " " + p1.getValorPropiedad() + " " + p1.getHabitaciones() + " " + p1.getEstrato());
+            System.out.println(p1.getIdPropiedad() + " " + p1.getBarrio() + " " + p1.getDireccion() + " " + p1.getValorPropiedad() + " " + p1.getHabitaciones() + " " + p1.getEstrato() + " ");
         }
         return p;
     }
 
     @Override
     public void eliminar(String nombre) {
-        propiedades.removeIf(p -> p.getNombrePropiedad().equals(nombre));
+        propiedades.removeIf(p -> p.getBarrio().equals(nombre));
     }
 
     @Override
     public Property buscar(String nombre) {
         for (Property p : propiedades) {
-            if (p.getNombrePropiedad().equals(nombre)) {
+            if (p.getBarrio().equals(nombre)) {
                 return p;
             }
         }

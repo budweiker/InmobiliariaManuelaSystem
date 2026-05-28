@@ -2,21 +2,24 @@ package realEstate.domain;
 
 public abstract class User {
     private int id;
-    private String contraseña;
+    private String password;
     private String nombre;
+    private String apellido;
     private String telefono;
     private String correo;
-    
+    private boolean status;
     
     public User(){
     }
 
-    public User(int id, String nombre, String telefono, String correo,String contraseña) {
+    public User(int id, String password, String nombre, String apellido, String telefono, String correo, boolean status) {
         this.id = id;
+        this.password = password;
         this.nombre = nombre;
-        this.contraseña = contraseña;
+        this.apellido = apellido;
         this.telefono = telefono;
         this.correo = correo;
+        this.status = status;
     }
 
     public int getId() {
@@ -26,12 +29,13 @@ public abstract class User {
     public void setId(int id) {
         this.id = id;
     }
-    public int getPassword() {
-        return id;
+
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String contraseña) {
-        this.contraseña = contraseña;
+        this.password = contraseña;
     }
 
     public String getNombre() {
@@ -57,5 +61,21 @@ public abstract class User {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

@@ -4,10 +4,10 @@ public class Property {
     private int id;
     private float valorPropiedad;
     private String ubicacionPropiedad;
-    private String propertyAddress;
+    private String direccion;
     private int habitaciones;
     private int estrato;
-    private String nombrePropiedad;
+    private String barrio;
 
     public Property() {
     }
@@ -28,12 +28,12 @@ public class Property {
         this.ubicacionPropiedad = ubicacionPropiedad;
     }
 
-    public String getPropertyAddress() {
-        return propertyAddress;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setPropertyAddress(String propertyAddress) {
-        this.propertyAddress = propertyAddress;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public int getHabitaciones() {
@@ -52,12 +52,12 @@ public class Property {
         this.estrato = estrato;
     }
 
-    public void setNombrePropiedad(String nombrePropiedad) {
-        this.nombrePropiedad = nombrePropiedad;
+    public void setBarrio(String barrio) {
+        this.barrio= barrio;
     }
 
-    public String getNombrePropiedad() {
-        return nombrePropiedad;
+    public String getBarrio() {
+        return barrio;
     }
 
     public int getIdPropiedad() {
