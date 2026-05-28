@@ -43,9 +43,9 @@ public class PropertyView {
         StringBuilder sb = new StringBuilder("Propiedades registradas:\n"); //Esto es para que todo el texto quede mejor organizado y mas legible (concatenar todo)
         for (Property property : properties) {
             sb.append("ID: ").append(property.getIdPropiedad())
-                    .append(" | Nombre: ").append(property.getNombrePropiedad())
+                    .append(" | Barrio: ").append(property.getBarrio())
                     .append(" | Valor: ").append(property.getValorPropiedad())
-                    .append(" | Ubicación: ").append(property.getUbicacionPropiedad())
+                    .append(" | Dirección: ").append(property.getDireccion())
                     .append(" | Habitaciones: ").append(property.getHabitaciones())
                     .append(" | Estrato: ").append(property.getEstrato())
                     .append("\n");
@@ -62,19 +62,18 @@ public class PropertyView {
         }
         tv.Mensaje("Propiedad encontrada:\n" +
                 "ID: " + property.getIdPropiedad() + "\n" +
-                "Nombre: " + property.getNombrePropiedad() + "\n" +
+                "Barrio: " + property.getBarrio() + "\n" +
                 "Valor: " + property.getValorPropiedad() + "\n" +
-                "Ubicación: " + property.getUbicacionPropiedad() + "\n" +
+                "Dirección: " + property.getDireccion() + "\n" +
                 "Habitaciones: " + property.getHabitaciones() + "\n" +
                 "Estrato: " + property.getEstrato());
     }
 
     private void addProperty() {
         Property property = new Property();
-        property.setIdPropiedad(tv.leerInt("Ingrese ID de la propiedad:"));
-        property.setNombrePropiedad(tv.leerString("Ingrese nombre de la propiedad:"));
+        property.setBarrio(tv.leerString("Ingrese el barrio de la propiedad:"));
         property.setValorPropiedad(tv.leerFloat("Ingrese el valor de la propiedad:"));
-        property.setUbicacionPropiedad(tv.leerString("Ingrese la ubicación de la propiedad:"));
+        property.setDireccion(tv.leerString("Ingrese la dirección de la propiedad:"));
         property.setHabitaciones(tv.leerInt("Ingrese el número de habitaciones:"));
         property.setEstrato(tv.leerInt("Ingrese el estrato de la propiedad:"));
         propertyServiceImpl.agregarPropiedad(property);
@@ -82,7 +81,7 @@ public class PropertyView {
     }
 
     private void deleteProperty() {
-        String name = tv.leerString("Ingrese el nombre de la propiedad a eliminar:");
+        String name = tv.leerString("Ingrese el barrio de la propiedad a eliminar:");
         Property property = propertyServiceImpl.buscarPropiedad(name);
         if (property == null) {
             tv.Mensaje("Propiedad no encontrada.");

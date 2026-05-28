@@ -32,7 +32,7 @@ public class PropertyServiceImpl {
     }
 
     public void eliminarPropiedad(Property p) {
-        repository.eliminar(p.getNombrePropiedad());
+        repository.eliminar(p.getBarrio());
     }
 
     public void agregarPropiedad(Property p) {
