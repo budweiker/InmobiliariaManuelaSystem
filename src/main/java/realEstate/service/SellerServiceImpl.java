@@ -41,5 +41,9 @@ public class SellerServiceImpl implements SellerService {
     public Seller findSeller(int id) {
         return repository.buscar(id);
     }
-}
+
+    public Seller findByCorreo(String correo) {
+        return repository.buscarPorCorreo(correo);
+    }
+}  
 

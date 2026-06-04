@@ -10,7 +10,7 @@ public class AdminRowMapper extends UserRowMapper<Admin>{
     public Admin mapRow(ResultSet rs) throws SQLException {
         Admin admin = new Admin();
         mapUserFields(rs, admin);
-        admin.setAdminType(rs.getString("admin_type"));
+        admin.setAdminType(getString(rs, "admin_type", "adminType"));
         return admin;
     }
 }

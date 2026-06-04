@@ -60,7 +60,7 @@ public class AdminRepositoryDB implements AdminPersistencePort {
     }
 
     public Admin buscarPorCorreo(String correo) {
-        String sql = "SELECT u.*, a.adminType FROM superUser u JOIN admin a ON u.id = a.id WHERE u.correo = ?";
+        String sql = "SELECT u.*, a.adminType AS admin_type FROM superUser u JOIN admin a ON u.id = a.id WHERE u.correo = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, correo);
             ResultSet rs = ps.executeQuery();
@@ -73,7 +73,7 @@ public class AdminRepositoryDB implements AdminPersistencePort {
 
     @Override
     public Admin buscar(int id) {
-        String sql = "SELECT u.*, a.adminType FROM superUser u JOIN admin a ON u.id = a.id WHERE u.id = ?";
+        String sql = "SELECT u.*, a.adminType AS admin_type FROM superUser u JOIN admin a ON u.id = a.id WHERE u.id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
@@ -87,7 +87,7 @@ public class AdminRepositoryDB implements AdminPersistencePort {
 
     public Collection<Admin> listarTodos() {
         List<Admin> lista = new ArrayList<>();
-        String sql = "SELECT u.*, a.adminType FROM superUser u JOIN admin a ON u.id = a.id";
+        String sql = "SELECT u.*, a.adminType AS admin_type FROM superUser u JOIN admin a ON u.id = a.id";
         try (Statement st = connection.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) lista.add(rowMapper.mapRow(rs));

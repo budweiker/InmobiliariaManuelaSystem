@@ -75,8 +75,8 @@ public class SellerView {
         seller.setNombre(tv.leerString("Ingrese nombre del vendedor:"));
         seller.setCorreo(tv.leerString("Ingrese correo del vendedor:"));
         seller.setTelefono(tv.leerString("Ingrese teléfono del vendedor:"));
-        seller.setBalance(tv.leerFloat("Ingrese balance del vendedor:"));
-        seller.setPropiedadesVendidas(tv.leerInt("Ingrese cantidad de propiedades vendidas:"));
+        seller.setBalance(tv.leerFloatEnRango(0, Float.MAX_VALUE, "Ingrese balance del vendedor (debe ser positivo):"));
+        seller.setPropiedadesVendidas(tv.leerIntEnRango(0, Integer.MAX_VALUE, "Ingrese cantidad de propiedades vendidas:"));
         sellerServiceImpl.addSeller(seller);
         tv.Mensaje("Vendedor agregado correctamente.");
     }

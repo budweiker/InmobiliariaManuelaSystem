@@ -72,10 +72,10 @@ public class PropertyView {
     private void addProperty() {
         Property property = new Property();
         property.setBarrio(tv.leerString("Ingrese el barrio de la propiedad:"));
-        property.setValorPropiedad(tv.leerFloat("Ingrese el valor de la propiedad:"));
+        property.setValorPropiedad(tv.leerFloatEnRango(0, Float.MAX_VALUE, "Ingrese el valor de la propiedad (debe ser positivo):"));
         property.setDireccion(tv.leerString("Ingrese la dirección de la propiedad:"));
-        property.setHabitaciones(tv.leerInt("Ingrese el número de habitaciones:"));
-        property.setEstrato(tv.leerInt("Ingrese el estrato de la propiedad:"));
+        property.setHabitaciones(tv.leerIntEnRango(1, 100, "Ingrese el número de habitaciones (mínimo 1):"));
+        property.setEstrato(tv.leerIntEnRango(1, 6, "Ingrese el estrato de la propiedad (1-6):"));
         propertyServiceImpl.agregarPropiedad(property);
         tv.Mensaje("Propiedad agregada correctamente.");
     }

@@ -75,7 +75,7 @@ public class BuyerView {
         buyer.setNombre(tv.leerString("Ingrese nombre del comprador:"));
         buyer.setCorreo(tv.leerString("Ingrese correo del comprador:"));
         buyer.setTelefono(tv.leerString("Ingrese teléfono del comprador:"));
-        buyer.setBalance(tv.leerFloat("Ingrese balance del comprador:"));
+        buyer.setBalance(tv.leerFloatEnRango(0, Float.MAX_VALUE, "Ingrese balance del comprador (debe ser positivo):"));
         buyer.setPropiedadDeInteresActual(tv.leerString("Ingrese propiedad de interés actual:"));
         buyerServiceImpl.addBuyer(buyer);
         tv.Mensaje("Comprador agregado correctamente.");
