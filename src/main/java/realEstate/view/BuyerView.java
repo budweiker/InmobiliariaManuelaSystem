@@ -1,17 +1,17 @@
 package realEstate.view;
 
 import realEstate.domain.Buyer;
-import realEstate.service.BuyerService;
+import realEstate.service.BuyerServiceImpl;
 import realEstate.util.TypeValidator;
 
 import java.util.Collection;
 
 public class BuyerView {
-    private final BuyerService buyerService;
+    private final BuyerServiceImpl buyerServiceImpl;
     private final TypeValidator tv = new TypeValidator();
 
-    public BuyerView(BuyerService buyerService) {
-        this.buyerService = buyerService;
+    public BuyerView(BuyerServiceImpl buyerServiceImpl) {
+        this.buyerServiceImpl = buyerServiceImpl;
     }
 
     public void menu() {
@@ -35,7 +35,7 @@ public class BuyerView {
     }
 
     private void listBuyers() {
-        Collection<Buyer> buyers = buyerService.selectAllBuyers();
+        Collection<Buyer> buyers = buyerServiceImpl.selectAllBuyers();
         if (buyers == null || buyers.isEmpty()) {
             tv.Mensaje("No hay compradores registrados.");
             return;
@@ -55,7 +55,7 @@ public class BuyerView {
 
     private void searchBuyer() {
         int id = tv.leerInt("Ingrese el ID del comprador a buscar:");
-        Buyer buyer = buyerService.findBuyer(id);
+        Buyer buyer = buyerServiceImpl.findBuyer(id);
         if (buyer == null) {
             tv.Mensaje("Comprador no encontrado.");
             return;
@@ -77,18 +77,18 @@ public class BuyerView {
         buyer.setTelefono(tv.leerString("Ingrese teléfono del comprador:"));
         buyer.setBalance(tv.leerFloat("Ingrese balance del comprador:"));
         buyer.setPropiedadDeInteresActual(tv.leerString("Ingrese propiedad de interés actual:"));
-        buyerService.addBuyer(buyer);
+        buyerServiceImpl.addBuyer(buyer);
         tv.Mensaje("Comprador agregado correctamente.");
     }
 
     private void deleteBuyer() {
         int id = tv.leerInt("Ingrese el ID del comprador a eliminar:");
-        Buyer buyer = buyerService.findBuyer(id);
+        Buyer buyer = buyerServiceImpl.findBuyer(id);
         if (buyer == null) {
             tv.Mensaje("Comprador no encontrado.");
             return;
         }
-        buyerService.deleteBuyer(buyer);
+        buyerServiceImpl.deleteBuyer(buyer);
         tv.Mensaje("Comprador eliminado correctamente.");
     }
 }

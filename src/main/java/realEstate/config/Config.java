@@ -2,29 +2,33 @@ package realEstate.config;
 
 import realEstate.persistence.db.DataBaseConnection;
 import realEstate.persistence.repository.*;
-import realEstate.service.AdminService;
-import realEstate.service.BuyerService;
+import realEstate.service.AdminServiceImpl;
+import realEstate.service.BuyerServiceImpl;
 import realEstate.service.PropertyServiceImpl;
-import realEstate.service.SellerService;
+import realEstate.service.SellerServiceImpl;
+import realEstate.service.portOutput.AdminPersistencePort;
+import realEstate.service.portOutput.BuyerPersistentPort;
 import realEstate.service.portOutput.PropertyPersistencePort;
+import realEstate.service.portOutput.SellerPersistentPort;
 import realEstate.userInterface.MenuApp;
 import realEstate.view.AdminView;
 import realEstate.view.BuyerView;
 import realEstate.view.PropertyView;
 import realEstate.view.SellerView;
 import realEstate.persistence.repository.PropertyRepositoryDB;
+import realEstate.persistence.repository.AdminRepositoryDB;
 
 import java.sql.Connection;
 
 public class Config {
-    private final SellerRepository sellerRepo;
+/*    private final SellerRepository sellerRepo;
     private final BuyerRepository buyerRepo;
-    private final AdminRepository adminRepo;
+    private final AdminRepository adminRepo;*/
 
     private final PropertyServiceImpl propertyServiceImpl;
-    private final SellerService sellerService;
-    private final BuyerService buyerService;
-    private final AdminService adminService;
+    private final SellerServiceImpl sellerServiceImpl;
+    private final BuyerServiceImpl buyerServiceImpl;
+    private final AdminServiceImpl adminServiceImpl;
 
     private final PropertyView propertyView;
     private final SellerView sellerView;
@@ -33,30 +37,30 @@ public class Config {
     private final MenuApp menuApp;
 
     public Config() {
-        sellerRepo = new SellerRepository();
+/*      sellerRepo = new SellerRepository();
         buyerRepo = new BuyerRepository();
-        adminRepo = new AdminRepository();
+        adminRepo = new AdminRepository();*/
 
         Connection connection = DataBaseConnection.getInstance().getConnection();
         //repositories DB
         PropertyPersistencePort propertyRepositoryDB = new PropertyRepositoryDB(connection);
-        AdminRepositoryDB  adminRepositoryDB  = new AdminRepositoryDB(connection);
-        SellerRepositoryDB sellerRepositoryDB = new SellerRepositoryDB(connection);
-        BuyerRepositoryDB  buyerRepositoryDB  = new BuyerRepositoryDB(connection);
+        AdminPersistencePort adminRepositoryDB  = new AdminRepositoryDB(connection);
+        SellerPersistentPort sellerRepositoryDB = new SellerRepositoryDB(connection);
+        BuyerPersistentPort buyerRepositoryDB  = new BuyerRepositoryDB(connection);
 
         //Services
         propertyServiceImpl = new PropertyServiceImpl(propertyRepositoryDB);
-        //adminService  = new AdminService(adminRepositoryDB);
-        //sellerService = new SellerService(sellerRepositoryDB);
-        //buyerService  = new BuyerService(buyerRepositoryDB);
-        sellerService = new SellerService(sellerRepo);
-        buyerService = new BuyerService(buyerRepo);
-        adminService = new AdminService(adminRepo);
+        adminServiceImpl = new AdminServiceImpl(adminRepositoryDB);
+        sellerServiceImpl = new SellerServiceImpl(sellerRepositoryDB);
+        buyerServiceImpl = new BuyerServiceImpl(buyerRepositoryDB);
+/*        sellerServiceImpl = new SellerServiceImpl(sellerRepo);
+        buyerServiceImpl = new BuyerServiceImpl(buyerRepo);
+        adminServiceImpl = new AdminServiceImpl(adminRepo);*/
 
         propertyView = new PropertyView(propertyServiceImpl);
-        sellerView = new SellerView(sellerService);
-        buyerView = new BuyerView(buyerService);
-        adminView = new AdminView(adminService);
+        sellerView = new SellerView(sellerServiceImpl);
+        buyerView = new BuyerView(buyerServiceImpl);
+        adminView = new AdminView(adminServiceImpl);
 
         menuApp = new MenuApp(propertyView, sellerView, buyerView, adminView);
     }

@@ -2,13 +2,14 @@ package realEstate.persistence.repository;
 
 import realEstate.domain.Buyer;
 import realEstate.persistence.mapper.BuyerRowMapper;
+import realEstate.service.portOutput.BuyerPersistentPort;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class BuyerRepositoryDB {
+public class BuyerRepositoryDB implements BuyerPersistentPort {
     private final Connection connection;
     private final BuyerRowMapper rowMapper = new BuyerRowMapper();
 

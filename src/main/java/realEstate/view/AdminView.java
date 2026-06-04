@@ -1,17 +1,17 @@
 package realEstate.view;
 
 import realEstate.domain.Admin;
-import realEstate.service.AdminService;
+import realEstate.service.AdminServiceImpl;
 import realEstate.util.TypeValidator;
 
 import java.util.Collection;
 
 public class AdminView {
-    private final AdminService adminService;
+    private final AdminServiceImpl adminServiceImpl;
     private final TypeValidator tv = new TypeValidator();
 
-    public AdminView(AdminService adminService) {
-        this.adminService = adminService;
+    public AdminView(AdminServiceImpl adminServiceImpl) {
+        this.adminServiceImpl = adminServiceImpl;
     }
 
     public void menu() {
@@ -35,7 +35,7 @@ public class AdminView {
     }
 
     private void listAdmins() {
-        Collection<Admin> admins = adminService.selectAllAdmins();
+        Collection<Admin> admins = adminServiceImpl.selectAllAdmins();
         if (admins == null || admins.isEmpty()) {
             tv.Mensaje("No hay administradores registrados.");
             return;
@@ -53,7 +53,7 @@ public class AdminView {
 
     private void searchAdmin() {
         int id = tv.leerInt("Ingrese el ID del administrador a buscar:");
-        Admin admin = adminService.findAdmin(id);
+        Admin admin = adminServiceImpl.findAdmin(id);
         if (admin == null) {
             tv.Mensaje("Administrador no encontrado.");
             return;
@@ -72,18 +72,18 @@ public class AdminView {
         admin.setNombre(tv.leerString("Ingrese nombre del administrador:"));
         admin.setCorreo(tv.leerString("Ingrese correo del administrador:"));
         admin.setTelefono(tv.leerString("Ingrese teléfono del administrador:"));
-        adminService.addAdmin(admin);
+        adminServiceImpl.addAdmin(admin);
         tv.Mensaje("Administrador agregado correctamente.");
     }
 
     private void deleteAdmin() {
         int id = tv.leerInt("Ingrese el ID del administrador a eliminar:");
-        Admin admin = adminService.findAdmin(id);
+        Admin admin = adminServiceImpl.findAdmin(id);
         if (admin == null) {
             tv.Mensaje("Administrador no encontrado.");
             return;
         }
-        adminService.deleteAdmin(admin);
+        adminServiceImpl.deleteAdmin(id);
         tv.Mensaje("Administrador eliminado correctamente.");
     }
 }

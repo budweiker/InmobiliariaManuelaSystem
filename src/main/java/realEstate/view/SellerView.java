@@ -1,17 +1,17 @@
 package realEstate.view;
 
 import realEstate.domain.Seller;
-import realEstate.service.SellerService;
+import realEstate.service.SellerServiceImpl;
 import realEstate.util.TypeValidator;
 
 import java.util.Collection;
 
 public class SellerView {
-    private final SellerService sellerService;
+    private final SellerServiceImpl sellerServiceImpl;
     private final TypeValidator tv = new TypeValidator();
 
-    public SellerView(SellerService sellerService) {
-        this.sellerService = sellerService;
+    public SellerView(SellerServiceImpl sellerServiceImpl) {
+        this.sellerServiceImpl = sellerServiceImpl;
     }
 
     public void menu() {
@@ -35,7 +35,7 @@ public class SellerView {
     }
 
     private void listSellers() {
-        Collection<Seller> sellers = sellerService.selectAllSellers();
+        Collection<Seller> sellers = sellerServiceImpl.selectAllSellers();
         if (sellers == null || sellers.isEmpty()) {
             tv.Mensaje("No hay vendedores registrados.");
             return;
@@ -55,7 +55,7 @@ public class SellerView {
 
     private void searchSeller() {
         int id = tv.leerInt("Ingrese el ID del vendedor a buscar:");
-        Seller seller = sellerService.findSeller(id);
+        Seller seller = sellerServiceImpl.findSeller(id);
         if (seller == null) {
             tv.Mensaje("Vendedor no encontrado.");
             return;
@@ -77,18 +77,18 @@ public class SellerView {
         seller.setTelefono(tv.leerString("Ingrese teléfono del vendedor:"));
         seller.setBalance(tv.leerFloat("Ingrese balance del vendedor:"));
         seller.setPropiedadesVendidas(tv.leerInt("Ingrese cantidad de propiedades vendidas:"));
-        sellerService.addSeller(seller);
+        sellerServiceImpl.addSeller(seller);
         tv.Mensaje("Vendedor agregado correctamente.");
     }
 
     private void deleteSeller() {
         int id = tv.leerInt("Ingrese el ID del vendedor a eliminar:");
-        Seller seller = sellerService.findSeller(id);
+        Seller seller = sellerServiceImpl.findSeller(id);
         if (seller == null) {
             tv.Mensaje("Vendedor no encontrado.");
             return;
         }
-        sellerService.deleteSeller(seller);
+        sellerServiceImpl.deleteSeller(seller);
         tv.Mensaje("Vendedor eliminado correctamente.");
     }
 }
