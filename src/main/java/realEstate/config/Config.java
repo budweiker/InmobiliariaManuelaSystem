@@ -17,6 +17,7 @@ import realEstate.view.PropertyView;
 import realEstate.view.SellerView;
 import realEstate.persistence.repository.PropertyRepositoryDB;
 import realEstate.persistence.repository.AdminRepositoryDB;
+import realEstate.service.AuthService;
 
 import java.sql.Connection;
 
@@ -61,8 +62,9 @@ public class Config {
         sellerView = new SellerView(sellerServiceImpl);
         buyerView = new BuyerView(buyerServiceImpl);
         adminView = new AdminView(adminServiceImpl);
+        AuthService authService = new AuthService(adminServiceImpl, sellerServiceImpl, buyerServiceImpl);
 
-        menuApp = new MenuApp(propertyView, sellerView, buyerView, adminView);
+        menuApp = new MenuApp(propertyView, sellerView, buyerView, adminView, authService);
     }
 
     public MenuApp getMenuApp() {

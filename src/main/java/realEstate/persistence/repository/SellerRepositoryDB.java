@@ -81,7 +81,7 @@ public class SellerRepositoryDB implements SellerPersistentPort {
 
     public Collection<Seller> listarTodos() {
         List<Seller> lista = new ArrayList<>();
-        String sql = "SELECT u.*, s.propiedadesVendidas, s.balance FROM user u JOIN seller s ON u.id = s.id";
+        String sql = "SELECT u.*, s.propiedadesVendidas, s.balance FROM superUser u JOIN seller s ON u.id = s.id";
         try (Statement st = connection.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) lista.add(rowMapper.mapRow(rs));

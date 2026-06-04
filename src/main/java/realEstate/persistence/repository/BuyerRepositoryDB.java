@@ -22,10 +22,10 @@ public class BuyerRepositoryDB implements BuyerPersistentPort {
         try (PreparedStatement ps = connection.prepareStatement(sqlUser, PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, b.getNombre());
             ps.setString(2, b.getApellido());
-            ps.setString(2, b.getTelefono());
-            ps.setString(3, b.getCorreo());
-            ps.setString(4, b.getPassword());
-            ps.setBoolean(5, b.isStatus());
+            ps.setString(3, b.getTelefono());
+            ps.setString(4, b.getCorreo());
+            ps.setString(5, b.getPassword());
+            ps.setBoolean(6, b.isStatus());
             ps.executeUpdate();
             ResultSet keys = ps.getGeneratedKeys();
             if (keys.next()) b.setId(keys.getInt(1));
@@ -83,7 +83,7 @@ public class BuyerRepositoryDB implements BuyerPersistentPort {
 
     public Collection<Buyer> listarTodos() {
         List<Buyer> lista = new ArrayList<>();
-        String sql = "SELECT u.*, b.propiedadDeInteresActual, b.balance FROM user u JOIN buyer b ON u.id = b.id";
+        String sql = "SELECT u.*, b.propiedadDeInteresActual, b.balance FROM superUser u JOIN buyer b ON u.id = b.id";
         try (Statement st = connection.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) lista.add(rowMapper.mapRow(rs));

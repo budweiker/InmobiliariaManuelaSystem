@@ -12,7 +12,21 @@ public abstract class UserRowMapper <T extends User> implements RowMapper<T> {
         u.setApellido(rs.getString("apellido"));
         u.setTelefono(rs.getString("telefono"));
         u.setCorreo(rs.getString("correo"));
-        u.setPassword(rs.getString("password"));
+        u.setPassword(getString(rs, "password", "contraseña"));
         u.setStatus(rs.getBoolean("status"));
+    }
+
+    protected String getString(ResultSet rs, String... columnNames) throws SQLException {
+        for (String columnName : columnNames) {
+            try {
+                String value = rs.getString(columnName);
+                if (value != null) {
+                    return value;
+                }
+            } catch (SQLException ignored) {
+                
+            }
+        }
+        return null;
     }
 }

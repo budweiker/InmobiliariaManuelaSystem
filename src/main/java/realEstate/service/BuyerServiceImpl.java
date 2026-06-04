@@ -41,5 +41,9 @@ public class BuyerServiceImpl implements BuyerService {
     public Buyer findBuyer(int id) {
         return repository.buscar(id);
     }
-}
+
+    public Buyer findByCorreo(String correo) {
+        return repository.buscarPorCorreo(correo);
+    }
+}  
 
