@@ -21,9 +21,9 @@ import realEstate.persistence.repository.AdminRepositoryDB;
 import java.sql.Connection;
 
 public class Config {
-/*    private final SellerRepository sellerRepo;
+    private final SellerRepository sellerRepo;
     private final BuyerRepository buyerRepo;
-    private final AdminRepository adminRepo;*/
+    private final AdminRepository adminRepo;
 
     private final PropertyServiceImpl propertyServiceImpl;
     private final SellerServiceImpl sellerServiceImpl;
@@ -37,9 +37,9 @@ public class Config {
     private final MenuApp menuApp;
 
     public Config() {
-/*      sellerRepo = new SellerRepository();
+        sellerRepo = new SellerRepository();
         buyerRepo = new BuyerRepository();
-        adminRepo = new AdminRepository();*/
+        adminRepo = new AdminRepository();
 
         Connection connection = DataBaseConnection.getInstance().getConnection();
         //repositories DB

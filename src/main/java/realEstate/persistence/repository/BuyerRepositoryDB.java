@@ -45,6 +45,30 @@ public class BuyerRepositoryDB implements BuyerPersistentPort {
         return b;
     }
 
+    @Override
+    public Buyer buscar(int id) {
+        String sql = "SELECT u.*, b.propiedadDeInteresActual, b.balance FROM superUser u JOIN buyer b ON u.id = b.id WHERE u.id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) return rowMapper.mapRow(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al buscar comprador: " + e.getMessage());
+        }
+        return null;
+    }
+
+    @Override
+    public void eliminar(int id) {
+        String sql = "DELETE FROM superUser WHERE id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al eliminar comprador: " + e.getMessage());
+        }
+    }
+
     public Buyer buscarPorCorreo(String correo) {
         String sql = "SELECT u.*, b.propiedadDeInteresActual, b.balance FROM superUser u JOIN buyer b ON u.id = b.id WHERE u.correo = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
