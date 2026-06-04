@@ -2,13 +2,14 @@ package realEstate.persistence.repository;
 
 import realEstate.domain.Admin;
 import realEstate.persistence.mapper.AdminRowMapper;
+import realEstate.service.portOutput.AdminPersistencePort;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class AdminRepositoryDB {
+public class AdminRepositoryDB implements AdminPersistencePort {
     private final Connection connection;
     private final AdminRowMapper rowMapper = new AdminRowMapper();
 
@@ -47,6 +48,17 @@ public class AdminRepositoryDB {
         return a;
     }
 
+    @Override
+    public void eliminar(int id) {
+        String sql = "DELETE FROM superUser WHERE id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al eliminar admin: " + e.getMessage());
+        }
+    }
+
     public Admin buscarPorCorreo(String correo) {
         String sql = "SELECT u.*, a.adminType FROM superUser u JOIN admin a ON u.id = a.id WHERE u.correo = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -55,6 +67,20 @@ public class AdminRepositoryDB {
             if (rs.next()) return rowMapper.mapRow(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al buscar admin: " + e.getMessage());
+        }
+        return null;
+    }
+
+    @Override
+    public Admin buscar(int id) {
+        String sql = "SELECT u.*, a.adminType FROM superUser u JOIN admin a ON u.id = a.id WHERE u.id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) return rowMapper.mapRow(rs);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al buscar admin por id: " + e.getMessage());
         }
         return null;
     }

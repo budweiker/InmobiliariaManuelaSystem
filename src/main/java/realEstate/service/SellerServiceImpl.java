@@ -2,20 +2,22 @@ package realEstate.service;
 
 import realEstate.domain.Seller;
 import realEstate.persistence.repository.SellerRepository;
+import realEstate.service.portInput.SellerService;
+import realEstate.service.portOutput.SellerPersistentPort;
 import realEstate.util.TypeValidator;
 
 import java.util.Collection;
 import java.util.Collections;
 
-public class SellerService {
+public class SellerServiceImpl implements SellerService {
     private final TypeValidator tv = new TypeValidator();
-    private final SellerRepository repository;
+    private final SellerPersistentPort repository;
 
-    public SellerService() {
+    public SellerServiceImpl() {
         this(new SellerRepository());
     }
 
-    public SellerService(SellerRepository repository) {
+    public SellerServiceImpl(SellerPersistentPort repository) {
         this.repository = repository;
     }
 
@@ -31,8 +33,9 @@ public class SellerService {
         repository.eliminar(s.getId());
     }
 
-    public void addSeller(Seller s) {
+    public Seller addSeller(Seller s) {
         repository.agregar(s);
+        return s;
     }
 
     public Seller findSeller(int id) {

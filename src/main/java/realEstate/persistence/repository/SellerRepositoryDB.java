@@ -2,13 +2,14 @@ package realEstate.persistence.repository;
 
 import realEstate.domain.Seller;
 import realEstate.persistence.mapper.SellerRowMapper;
+import realEstate.service.portOutput.SellerPersistentPort;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class SellerRepositoryDB {
+public class SellerRepositoryDB implements SellerPersistentPort {
     private final Connection connection;
     private final SellerRowMapper rowMapper = new SellerRowMapper();
 
@@ -42,6 +43,28 @@ public class SellerRepositoryDB {
             throw new RuntimeException("Error al insertar seller: " + e.getMessage());
         }
         return s;
+    }
+
+    public void eliminar(int id){
+        String sql = "DELETE FROM superUser WHERE id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al eliminar seller: " + e.getMessage());
+        }
+    }
+
+    public Seller buscar(int id) {
+        String sql = "SELECT u.*, s.propiedadesVendidas, s.balance FROM superUser u JOIN seller s ON u.id = s.id WHERE u.id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) return rowMapper.mapRow(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al buscar seller: " + e.getMessage());
+        }
+        return null;
     }
 
     public Seller buscarPorCorreo(String correo) {

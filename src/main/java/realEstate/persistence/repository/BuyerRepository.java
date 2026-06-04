@@ -2,7 +2,9 @@ package realEstate.persistence.repository;
 import java.util.Collection;
 import java.util.HashMap;
 import realEstate.domain.Buyer;
-public class BuyerRepository {
+import realEstate.service.portOutput.BuyerPersistentPort;
+
+public class BuyerRepository implements BuyerPersistentPort {
     HashMap<Integer, Buyer> compradores = new HashMap<>();
     public void agregar(Buyer b){
         compradores.put(b.getId(), b);
@@ -16,4 +18,5 @@ public class BuyerRepository {
     public Collection<Buyer> listarTodos(){
         return compradores.values();
     }
+
 }
